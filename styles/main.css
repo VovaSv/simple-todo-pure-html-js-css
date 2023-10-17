@@ -201,3 +201,88 @@ line-height: normal;
 .habbit__list_item_delete_btn:hover {
   background: #EFF2FF;
 }
+
+.habbit__add_list_item {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background: #FFF;
+  margin-top: 25px;
+  padding-right: 10px;
+}
+
+.habbit__add_list_item__day {
+  padding: 20px 40px;
+  background: #FBFAFF;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid #E7EBFB;
+  color: #000;
+   font-family: Comfortaa;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+ }
+
+ .habbit__add_list_item__form{
+  padding-left: 25px;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  position: relative;
+ }
+
+ .habbit__add_list_item__add_btn {
+  width: 120px;
+  height: 39px;
+  border-radius: 9px;
+  background: #EDECFE;
+  color: #5051F9;
+  font-family: Comfortaa;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+ }
+ 
+ .habbit__add_list_item__add_btn:hover {
+  background: #e4e4ff;
+ }
+
+
+ .habbit__add_list_item__input {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 9px;
+  border: 1px solid #E7EBFB;
+  background: #FFF;
+  height: 39px;
+ }
+
+ .habbit__add_list_item__input {
+  padding-left: 45px;
+  outline: none;
+ }
+
+ .habbit__add_list_item__input::placeholder {
+  color: #8899A8;
+  font-family: Comfortaa;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+ }
+
+ .habbit__add_list_item__input::before {
+  content: '';
+  background: url(images/comment.svg);
+ }
+
+ .habbit__add_list_item__input_icon {
+  position: absolute;
+  top: 10px;
+  left: 45px;
+ }
