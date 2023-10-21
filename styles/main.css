@@ -131,10 +131,10 @@ header {
 
 .progress__bar_fill {
   height: 5px;
-  width: 80%;
   background: #5051F9;
   position: absolute;
   border-radius: 25px;
+  transition: all 0.5s;
 }
 
 h1 {

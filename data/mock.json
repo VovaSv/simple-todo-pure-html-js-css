@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "icon": "dumbell",
+        "name": "Banch pressing",
+        "target": 10,
+        "days": [
+            {"comment": "First attempt always going hard"},
+            {"comment": "On second day is more easy"}
+        ]
+    },
+    {
+        "id": 2,
+        "icon": "food3",
+        "name": "Correct food",
+        "target": 9,
+        "days": [
+            {"comment": "Cool"}
+        ]
+    }
+]
