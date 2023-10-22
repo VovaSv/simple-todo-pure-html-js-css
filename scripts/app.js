@@ -30,6 +30,15 @@ function storeData() {
 }
 
 
+function handleSubmitAddHabbit(event) {
+    console.log(event);
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    console.log(formData.get());
+
+}
+
+
 function renderMenu() {
     for (const habbit of habbits) {
         const queriedButton = document.querySelector(`[data-habbit-id="${habbit.id}"]`);
@@ -50,18 +59,31 @@ function renderContentMain(activeHabbit) {
 
     page.main.habbitList.innerHTML = '';
     const node = document.querySelector('.habbit__list')
-    for (let i = 0; i < activeHabbit.days.length; i++) {
+    for (const i in activeHabbit.days) {
         const day = activeHabbit.days[i];
         const habbitListItem =` 
         <div class="habbit__list_item">
-        <div class="habbit__list_item_day">Day${i + 1}</div>
-        <div class="habbit__list_item_comment">${day.comment}</div>
-            <button class="habbit__list_item_delete_btn">
-                <img src="images/delete.svg" alt="">
-            </button>
+                <div class="habbit__list_item_day">Day${+i + 1}</div>
+                <div class="habbit__list_item_comment">${day.comment}</div>
+                    <button class="habbit__list_item_delete_btn">
+                        <img src="images/delete.svg" alt="">
+                    </button>
         </div>`;
         page.main.habbitList.insertAdjacentHTML('beforeend', habbitListItem);
     }
+    const habbitListItemForAdd = `
+        <div class="habbit__add_list_item" onsubmit="handleSubmitAddHabbit(event)">
+            <div class="habbit__add_list_item__day">Day${activeHabbit.days.length + 1}</div>
+                <form class="habbit__add_list_item__form">
+                    <input name="inputForComment" class="habbit__add_list_item__input" type="text" placeholder="Comment...">
+                        <img class="habbit__add_list_item__input_icon" src="images/comment.svg" alt="Add Comment">
+                        <button class="habbit__add_list_item__add_btn" type="submit">
+                            Add Habbit
+                        </button>
+                </form>
+        </div>`;
+
+        page.main.habbitList.insertAdjacentHTML('beforeend', habbitListItemForAdd);
 }
 
 function updateHeader(activeHabbit) {
