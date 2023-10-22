@@ -30,12 +30,23 @@ function storeData() {
 }
 
 
-function handleSubmitAddHabbit(event) {
-    console.log(event);
+function handleSubmitFormAddHabbit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    console.log(formData.get());
+    const form = event.target;
+    // const inputCommentField = document.querySelector('.habbit__add_list_item__input');
+    const inputCommentField = form['inputForComment'];
+    console.log(form);
 
+    const formData = new FormData(event.target);
+    const inputCommentFormValue = formData.get('inputForComment');
+    inputCommentField.classList.remove('input__error');
+    if(!inputCommentFormValue) {
+        inputCommentField.classList.add('input__error');
+    }
+    inputCommentField.value = '';
+
+
+    console.log(formData.set('inputForComment', ''));
 }
 
 
@@ -72,7 +83,7 @@ function renderContentMain(activeHabbit) {
         page.main.habbitList.insertAdjacentHTML('beforeend', habbitListItem);
     }
     const habbitListItemForAdd = `
-        <div class="habbit__add_list_item" onsubmit="handleSubmitAddHabbit(event)">
+        <div class="habbit__add_list_item" onsubmit="handleSubmitFormAddHabbit(event)">
             <div class="habbit__add_list_item__day">Day${activeHabbit.days.length + 1}</div>
                 <form class="habbit__add_list_item__form">
                     <input name="inputForComment" class="habbit__add_list_item__input" type="text" placeholder="Comment...">

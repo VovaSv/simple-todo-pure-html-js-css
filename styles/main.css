@@ -286,3 +286,7 @@ line-height: normal;
   top: 10px;
   left: 45px;
  }
+
+ .input__error {
+  border: 1px solid red;
+ }
