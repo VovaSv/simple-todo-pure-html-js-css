@@ -27,14 +27,18 @@ function loadData() {
     }
 }
 
-function updateHabbitDays(comment) {
+function addHabbitDay(comment) {
 
     habbits.find(habbit => habbit.id === globalState.activeHabbit.id).days.push({"comment": comment});
     //activeHabbit.days.push({"comment": comment})
-    localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
     const updatedActiveHabbit =  habbits.find(habbit => habbit.id === globalState.activeHabbit.id)
     globalState.activeHabbit = updatedActiveHabbit;
+    storeData();
     renderContentMain(globalState.activeHabbit);
+}
+
+function deleteHabbitDay(comment) {
+
 }
 
 
@@ -57,7 +61,7 @@ function handleSubmitFormAddHabbit(event) {
         inputCommentField.classList.add('input__error');
     }
     inputCommentField.value = '';
-    updateHabbitDays(inputCommentFormValue);
+    addHabbitDay(inputCommentFormValue);
 }
 
 
