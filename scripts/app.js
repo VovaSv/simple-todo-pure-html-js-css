@@ -2,6 +2,9 @@
 
 let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY';
+const globalState = {
+    activeHabbit: undefined
+}
 
 const page = {
     menu: document.querySelector('.menu__list'),
@@ -20,8 +23,18 @@ function loadData() {
     const habbitsArray = JSON.parse(habbitsString);
     if(Array.isArray(habbitsArray)) {
         habbits = habbitsArray;
-        console.log(habbits)  
+        console.log('from loadData:', habbits)  
     }
+}
+
+function updateHabbitDays(comment) {
+
+    habbits.find(habbit => habbit.id === globalState.activeHabbit.id).days.push({"comment": comment});
+    //activeHabbit.days.push({"comment": comment})
+    localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
+    const updatedActiveHabbit =  habbits.find(habbit => habbit.id === globalState.activeHabbit.id)
+    globalState.activeHabbit = updatedActiveHabbit;
+    renderContentMain(globalState.activeHabbit);
 }
 
 
@@ -44,9 +57,7 @@ function handleSubmitFormAddHabbit(event) {
         inputCommentField.classList.add('input__error');
     }
     inputCommentField.value = '';
-
-
-    console.log(formData.set('inputForComment', ''));
+    updateHabbitDays(inputCommentFormValue);
 }
 
 
@@ -111,6 +122,7 @@ function render() {
 }
 
 function handleActiveIcon(activeHabbit) {
+    globalState.activeHabbit = activeHabbit;
     updateHeader(activeHabbit);
     renderContentMain(activeHabbit);
     for (const habbit of habbits) {
