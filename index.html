@@ -27,7 +27,7 @@
             </button>
             -->
           </div>
-          <button class="menu__add">
+          <button class="menu__add" popovertarget="add-habbit-dialog" popovertargetaction="show">
             <img src="images/add.svg" alt="Add">
           </button>
         </nav>
@@ -79,6 +79,31 @@
           </main>
       </div>
     </div>
+    <dialog id="add-habbit-dialog" popover="manual" >
+      <div class="dialog-container">
+        <button class="close_popover_btn" popovertarget="add-habbit-dialog" popovertargetaction="hide">
+          <img src="images/cross.svg" alt="">
+        </button>
+        <h2>New Habbit</h2>
+        <div class="icon-label">Icon</div>
+        <div class="icon-select">
+          <button class="menu__item menu__item_active popover_icon">
+            <img src="images/dum.svg" alt="">
+          </button>
+          <button class="menu__item popover_icon">
+            <img src="images/water.svg" alt="">
+          </button>
+          <button class="menu__item popover_icon">
+            <img src="images/food3.svg" alt="">
+          </button>
+        </div>
+        <form class="popup__form">
+          <input class="popup_input" type="text" name="name" placeholder="New habbit name..." autofocus>
+          <input class="popup_input" type="number" name="target" placeholder="Target...">
+          <button class="habbit__add_list_item__add_btn popup_add_button">Add</button>
+      </form>
+    </div>
+    </dialog>
     <script src="scripts/app.js"></script>
   </body>
 </html>

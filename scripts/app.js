@@ -35,10 +35,19 @@ function addHabbitDay(comment) {
     globalState.activeHabbit = updatedActiveHabbit;
     storeData();
     renderContentMain(globalState.activeHabbit);
+    updateHeader(globalState.activeHabbit);
 }
 
-function deleteHabbitDay(comment) {
+function deleteHabbitDay(index) {
+    habbits.find(habbit => habbit.id === globalState.activeHabbit.id).days.splice(index,1);
+    storeData();
+    renderContentMain(globalState.activeHabbit);
+    updateHeader(globalState.activeHabbit);
+}
 
+function addHabbit() {
+    const dialog = document.querySelector("dialog");
+    dialog.showPopover();
 }
 
 
@@ -91,7 +100,7 @@ function renderContentMain(activeHabbit) {
         <div class="habbit__list_item">
                 <div class="habbit__list_item_day">Day${+i + 1}</div>
                 <div class="habbit__list_item_comment">${day.comment}</div>
-                    <button class="habbit__list_item_delete_btn">
+                    <button class="habbit__list_item_delete_btn" onclick="deleteHabbitDay(${i})">
                         <img src="images/delete.svg" alt="">
                     </button>
         </div>`;
