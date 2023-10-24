@@ -3,7 +3,8 @@
 let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY';
 const globalState = {
-    activeHabbit: undefined
+    activeHabbit: undefined,
+    selectedNewHabbit: 'sport'
 }
 
 const page = {
@@ -113,7 +114,7 @@ function renderContentMain(activeHabbit) {
                     <input name="inputForComment" class="habbit__add_list_item__input" type="text" placeholder="Comment...">
                         <img class="habbit__add_list_item__input_icon" src="images/comment.svg" alt="Add Comment">
                         <button class="habbit__add_list_item__add_btn" type="submit">
-                            Add Habbit
+                            Add Day
                         </button>
                 </form>
         </div>`;
@@ -146,6 +147,49 @@ function handleActiveIcon(activeHabbit) {
             queriedButton.classList.remove('menu__item_active');
         }
     }
+}
+
+function selectNewHabbit(context, habbitType) {
+    console.log('fromNewHabbit: ', habbitType )
+    console.log('fromNewHabbit: ', context )
+    const activeIcon = document.querySelector('.menu__item_active.popover_icon');
+    console.log('fromNewHabbit: ', activeIcon )
+    //const queriedAllButtons = document.querySelectorAll('[data-new-habbit]');
+    const forFieldForSelectedIcon = document.querySelector('[name="value_for_selected_icon"]');
+    forFieldForSelectedIcon.value = habbitType;
+    context.classList.add('menu__item_active');
+    activeIcon.classList.remove('menu__item_active');
+
+    /*
+    console.log('fromNewHabbit: ', queriedAllButtons )
+    for (const iconButton of queriedAllButtons) {
+        if(iconButton.dataset.newHabbit === habbit) {
+            iconButton.classList.add('menu__item_active');
+        } else {
+            iconButton.classList.remove('menu__item_active');
+        }
+    }
+    globalState.selectedNewHabbit = habbit;
+    */
+}
+
+function handleSubmitNewHabbit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const newIcon = formData.get('value_for_selected_icon');
+    const newName = formData.get('name');
+    const newTarget = formData.get('target');
+    console.log('fromHandleSubmitNew', newIcon, newName,newTarget)
+    const newHabbit = {
+            "id": habbits.length,
+            "icon": "dum",
+            "name": "Banch pressing",
+            "target": 10,
+            "days": [
+                {"comment": "First attempt always going hard"},
+                {"comment": "On second day is more easy"}
+            ]
+        }
 }
 
 

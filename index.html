@@ -70,7 +70,7 @@
                   <input class="habbit__add_list_item__input" type="text" placeholder="Comment...">
                   <img class="habbit__add_list_item__input_icon" src="images/comment.svg" alt="Add Comment">
                   <button class="habbit__add_list_item__add_btn">
-                    Add Habbit
+                    Add Day
                   </button>
                 </form>
               </div>
@@ -87,20 +87,21 @@
         <h2>New Habbit</h2>
         <div class="icon-label">Icon</div>
         <div class="icon-select">
-          <button class="menu__item menu__item_active popover_icon">
+          <button class="menu__item menu__item_active popover_icon" data-new-habbit="sport" onclick="selectNewHabbit(this, 'sport')">
             <img src="images/dum.svg" alt="">
           </button>
-          <button class="menu__item popover_icon">
+          <button class="menu__item popover_icon" data-new-habbit="water" onclick="selectNewHabbit(this, 'water')">
             <img src="images/water.svg" alt="">
           </button>
-          <button class="menu__item popover_icon">
+          <button class="menu__item popover_icon" data-new-habbit="food" onclick="selectNewHabbit(this, 'food')">
             <img src="images/food3.svg" alt="">
           </button>
         </div>
-        <form class="popup__form">
+        <form class="popup__form" id="add_new_habbit_form" onsubmit="handleSubmitNewHabbit(event)">
           <input class="popup_input" type="text" name="name" placeholder="New habbit name..." autofocus>
+          <input type="text" name="value_for_selected_icon" hidden value="sport">
           <input class="popup_input" type="number" name="target" placeholder="Target...">
-          <button class="habbit__add_list_item__add_btn popup_add_button">Add</button>
+          <button class="habbit__add_list_item__add_btn popup_add_button" type="submit">Add</button>
       </form>
     </div>
     </dialog>
