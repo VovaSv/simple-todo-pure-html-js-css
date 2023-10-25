@@ -16,7 +16,8 @@ const page = {
     },
     main: {
         habbitList: document.querySelector('.habbit__list')
-    }
+    },
+    dialog: document.querySelector("dialog")
 }
 
 function loadData() {
@@ -47,8 +48,7 @@ function deleteHabbitDay(index) {
 }
 
 function addHabbit() {
-    const dialog = document.querySelector("dialog");
-    dialog.showPopover();
+    page.dialog.showPopover();
 }
 
 
@@ -173,23 +173,34 @@ function selectNewHabbit(context, habbitType) {
     */
 }
 
+function validateForm() {
+
+}
+
 function handleSubmitNewHabbit(event) {
     event.preventDefault();
+    console.log('target', event.target['name'])
     const formData = new FormData(event.target);
+    const fields = ['value_for_selected_icon']
     const newIcon = formData.get('value_for_selected_icon');
     const newName = formData.get('name');
     const newTarget = formData.get('target');
-    console.log('fromHandleSubmitNew', newIcon, newName,newTarget)
     const newHabbit = {
-            "id": habbits.length,
-            "icon": "dum",
-            "name": "Banch pressing",
-            "target": 10,
+            "id": habbits.length + 1,
+            "icon": newIcon,
+            "name": newName,
+            "target": newTarget,
             "days": [
-                {"comment": "First attempt always going hard"},
-                {"comment": "On second day is more easy"}
             ]
-        }
+        };
+     const isValidForm = validateForm();
+     if (isValidForm) {
+        habbits.push(newHabbit); 
+        page.dialog.hidePopover(); 
+        renderMenu();
+        handleActiveIcon(newHabbit);
+        storeData();
+     }
 }
 
 
