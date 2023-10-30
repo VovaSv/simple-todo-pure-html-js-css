@@ -144,11 +144,6 @@ function render() {
 
 function handleActiveIcon(activeHabbit) {
     document.location.replace(document.location.pathname + '#' + activeHabbit.id);
-    const hash = document.location.hash.split('#')[1];
-    console.log('hash in handleIsActive:', hash);
-    console.log('active is :', activeHabbit.id)
-    
-   
     globalState.activeHabbit = activeHabbit;
     updateHeader(activeHabbit);
     renderContentMain(activeHabbit);
