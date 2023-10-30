@@ -17,7 +17,8 @@ const page = {
     main: {
         habbitList: document.querySelector('.habbit__list')
     },
-    dialog: document.querySelector("dialog")
+    dialog: document.querySelector("dialog"),
+    addHabbitForm: document.getElementById("add_new_habbit_form"),
 }
 
 function loadData() {
@@ -89,6 +90,12 @@ function renderMenu() {
             console.log('page menu', page.menu)
         }
     }
+
+    page.dialog.addEventListener('toggle', (event) => {
+        if (event.newState === "open") {
+            page.addHabbitForm.reset();
+          } 
+    })
 }
 
 function renderContentMain(activeHabbit) {
@@ -136,6 +143,12 @@ function render() {
 }
 
 function handleActiveIcon(activeHabbit) {
+    document.location.replace(document.location.pathname + '#' + activeHabbit.id);
+    const hash = document.location.hash.split('#')[1];
+    console.log('hash in handleIsActive:', hash);
+    console.log('active is :', activeHabbit.id)
+    
+   
     globalState.activeHabbit = activeHabbit;
     updateHeader(activeHabbit);
     renderContentMain(activeHabbit);
@@ -173,7 +186,21 @@ function selectNewHabbit(context, habbitType) {
     */
 }
 
-function validateForm() {
+function validateForm(form) {
+    let isValidForm = true;
+    const formData = new FormData(form);
+    const formFieldsNames = ['value_for_selected_icon', 'name','target'];
+    for (const field of formFieldsNames) {
+        const fieldData = formData.get(field);
+        const fieldNode = form[field];
+        if (!fieldData) {
+            isValidForm = false;
+            fieldNode.classList.add('error');
+        } else {
+            fieldNode.classList.remove('error');
+        }
+    }
+    return isValidForm;
 
 }
 
@@ -193,7 +220,7 @@ function handleSubmitNewHabbit(event) {
             "days": [
             ]
         };
-     const isValidForm = validateForm();
+     const isValidForm = validateForm(event.target);
      if (isValidForm) {
         habbits.push(newHabbit); 
         page.dialog.hidePopover(); 
@@ -207,7 +234,8 @@ function handleSubmitNewHabbit(event) {
 
 /**Init */
 (() => {
+    const hash = document.location.hash.split('#')[1];
     loadData();
     render();
-    handleActiveIcon(habbits[0]);
+    handleActiveIcon(hash ? habbits[hash - 1] : habbits[0]);
 })()
